@@ -16,7 +16,6 @@ const addBook = async (req, res, next) => {
             error: "Internal server error, Error while inserting a new book",
           });
         } else {
-          console.log("ressss ", results);
           res.status(200).json({
             results,
           });
@@ -40,9 +39,7 @@ const getAllBooks = async (req, res, next) => {
           error: "Internal server error, Error while getting all books",
         });
       } else {
-        console.log("ressss ", results);
         res.json(results);
-        // req.data = {...req.data, results};
         next(results);
       }
     });
@@ -82,7 +79,6 @@ const deleteBook = async (req, res, next) => {
 
 const updateBookDetails = async (req, res, next) => {
   try {
-    console.log("reddd ", req.params, req.body);
     const { id } = req.params;
     const book = req.body;
     const sql = `UPDATE Book SET ? WHERE BookId = ?`;
@@ -107,7 +103,6 @@ const searchBooks = async (req, res, next) => {
   try {
     const connection = await getSingleConnection();
     const { query } = req.query;
-    console.log("ddddddddd ", req.query);
     const sql = `
       SELECT * FROM Book
       WHERE Title LIKE ? OR Author LIKE ? OR ISBN LIKE ?

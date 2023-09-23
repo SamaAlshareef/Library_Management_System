@@ -15,7 +15,6 @@ const checkBook = async (req, res, next) => {
             error: "Internal server error, Error while checking a book",
           });
         } else {
-          console.log("ressss ", results);
           res.status(200).json({
             results,
           });
@@ -85,7 +84,6 @@ const returnBook = async (req, res, next) => {
   try {
     const regex = /^[0-9]+$/;
     const { borrowerId, bookId } = req.params;
-    console.log('bsssss ', req.params)
     if (regex.test(borrowerId) && regex.test(bookId)) {
       const sql = `UPDATE Borrowering SET ReturnDate = CURRENT_DATE() WHERE BorrowerId = ? AND BookId = ?`;
       const connection = await getSingleConnection();

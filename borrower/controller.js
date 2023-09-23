@@ -13,7 +13,6 @@ const addBorrower = async (req, res, next) => {
           error: "Internal server error, Error while inserting a new borrower",
         });
       } else {
-        console.log("ressss ", results);
         res.status(200).json({
           results,
         });
@@ -34,7 +33,6 @@ const getAllBorrowers = async (req, res, next) => {
         console.error("Error executing SQL query:", err);
         res.status(500).json({ error: "Internal server error" });
       } else {
-        console.log("ressss ", results);
         res.json(results);
         next(results);
       }
@@ -70,7 +68,6 @@ const deleteBorrower = async (req, res, next) => {
 
 const updateBororowerDetails = async (req, res, next) => {
   try {
-    console.log("reddd ", req.params, req.body);
     const { id } = req.params;
     const { body } = req;
     const sql = `UPDATE Borrower SET ? WHERE BorrowerId = ?`;
